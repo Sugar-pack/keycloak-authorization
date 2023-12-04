@@ -1,0 +1,12 @@
+{
+  "Keycloak": {
+    "Url": "http://localhost:8080",
+    "Realm": "test-abac",
+    "ClientID": "abac-authz",
+    "ClientSecret": "mns4zOPHHV6slqYUp1cQSeOaNmvIII3y"
+  },
+  "Server": {
+    "Host": "",
+    "Port": 8082
+  }
+}
