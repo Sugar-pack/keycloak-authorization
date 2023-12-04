@@ -1,0 +1,66 @@
+swagger: "2.0"
+info:
+  title: Test keycloak abac
+  description: Title
+  version: 1.0.0
+schemes:
+  - http
+securityDefinitions:
+  Auth:
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+  - Auth: []
+basePath: '/api/v1'
+host: localhost:8082
+tags:
+  - name: System
+    description: System endpoints
+  - name: Accounts
+    description: Account endpoints
+paths:
+  /health:
+    get:
+      summary: Healthcheck endpoint
+      tags:
+        - System
+      operationId: GetHealth
+      responses:
+        200:
+          description: Success
+        default:
+          description: Unexpected error.
+          schema:
+            $ref: "#/definitions/Error"
+  /user/me/accounts/{account_id}:
+    parameters:
+      - name: account_id
+        in: path
+        description: Account ID
+        required: true
+        type: string
+    get:
+      description: Get account name by account id
+      tags:
+        - Accounts
+      operationId: GetAccountName
+      responses:
+        200:
+          description: Success
+          schema:
+            type: string
+            example: "test account"
+        default:
+          description: Unexpected error.
+          schema:
+            $ref: "#/definitions/Error"
+definitions:
+  Principal:
+    type: string
+  Error:
+    type: object
+    properties:
+      message:
+        type: string
+        description: Error message
